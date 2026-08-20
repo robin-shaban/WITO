@@ -1,0 +1,369 @@
+@charset "utf-8";
+/* WITO website stylesheet
+   Built to Brand Guide Edition 04 (2026). Tokens, type roles and component
+   patterns follow the guide's own web specimen. Fonts are self-hosted; there
+   is no third-party request from any page on this site.
+   ------------------------------------------------------------------------ */
+
+/* ---------- Fonts ---------------------------------------------------- */
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;
+  src:url(../fonts/inter-400.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:italic;font-weight:400;font-display:swap;
+  src:url(../fonts/inter-400-italic.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;
+  src:url(../fonts/inter-600.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:700;font-display:swap;
+  src:url(../fonts/inter-700.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;
+  src:url(../fonts/jetbrainsmono-400.woff2) format("woff2")}
+
+/* ---------- Tokens --------------------------------------------------- */
+:root{
+  --gable:#004040;
+  --asphalt:#1F2322;
+  --bone:#FAF8F3;
+  --neutral:#F2F0EA;
+  --shale:#4A5552;
+  --ochre:#8A6B2E;
+  --mist:#C9D1CE;
+  --paper:#ECE8DD;
+  --ink:#0B0E0D;
+
+  --page:1080px;
+  --measure:68ch;
+  --gap:28px;
+  --rule:1px solid var(--mist);
+
+  --sans:Inter,Arial,sans-serif;
+  --mono:"JetBrains Mono",Consolas,monospace;
+}
+
+/* ---------- Reset and base ------------------------------------------- */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--bone);color:var(--asphalt);
+  font-family:var(--sans);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;height:auto}
+p{margin:0 0 14px;max-width:var(--measure)}
+ul,ol{margin:0 0 16px;padding-left:1.25em;max-width:var(--measure)}
+li{margin:0 0 6px}
+strong{font-weight:600}
+hr{border:0;border-top:var(--rule);margin:40px 0}
+a{color:var(--gable);text-underline-offset:2px}
+a:hover,a:focus-visible{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--gable);outline-offset:2px}
+.page{max-width:var(--page);margin:0 auto;padding:0 32px}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--gable);color:var(--bone);padding:12px 16px;
+  font-family:var(--mono);font-size:13px;text-decoration:none;
+}
+.skip:focus{left:0}
+
+.visually-hidden{
+  position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+/* ---------- Masthead -------------------------------------------------- */
+.masthead{background:var(--bone);border-bottom:var(--rule)}
+.masthead .page{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;min-height:64px;flex-wrap:wrap;
+}
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding:10px 0}
+.brand svg{height:20px;width:auto;display:block}
+.brand .full{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--shale);
+}
+@media (max-width:900px){.brand .full{display:none}}
+
+.masthead-right{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mainnav ul{display:flex;flex-wrap:wrap;gap:2px;list-style:none;margin:0;padding:0;max-width:none}
+.mainnav li{margin:0}
+.mainnav a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:36px;min-width:36px;padding:8px 10px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  color:var(--shale);text-decoration:none;
+}
+.mainnav a:hover,.mainnav a:focus-visible{color:var(--gable);text-decoration:underline}
+.mainnav a[aria-current="true"]{color:var(--gable);box-shadow:inset 0 -2px 0 var(--gable)}
+
+.lang{display:flex;align-items:center;gap:0;font-family:var(--mono);font-size:12px;letter-spacing:.08em}
+.lang span,.lang a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:36px;min-width:36px;padding:8px 6px;
+}
+.lang .current{color:var(--gable);font-weight:400;box-shadow:inset 0 -2px 0 var(--gable)}
+/* Named .other, not .pending: the .pending component below is a dashed
+   editorial marker and must not bleed into the language switcher. */
+.lang .other{color:var(--shale)}
+
+/* ---------- Hero, dark (home) ----------------------------------------- */
+.hero{position:relative;background:var(--gable);color:var(--bone);overflow:hidden}
+.hero .axis{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:1}
+.hero .page{position:relative;padding-top:72px;padding-bottom:64px}
+.hero .wordmark{display:block;height:44px;width:auto;margin-bottom:36px}
+.hero h1{
+  margin:0 0 20px;font-weight:700;line-height:1.1;letter-spacing:-.02em;
+  font-size:clamp(30px,5.2vw,50px);color:var(--bone);max-width:20ch;
+}
+.hero p{color:var(--bone);font-size:18px;max-width:56ch;margin:0}
+.hero .meta{
+  margin-top:40px;padding-top:24px;border-top:1px solid rgba(201,209,206,.35);
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mist);
+}
+.hero .meta span{display:block;margin-bottom:4px;max-width:none}
+
+/* ---------- Page header, light (interior) ----------------------------- */
+.pagehead{border-bottom:var(--rule);padding:56px 0 40px}
+.pagehead h1{
+  margin:0 0 14px;font-size:clamp(28px,4vw,40px);line-height:1.15;
+  font-weight:700;color:var(--gable);letter-spacing:-.01em;max-width:22ch;
+}
+.pagehead .lead{font-size:18px;color:var(--shale);max-width:62ch;margin:0}
+
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ochre);margin:0 0 12px;max-width:none;
+}
+
+.stack{display:block;margin:16px 0 0}
+.stack i{display:block;height:1.5px;background:var(--mist);margin-bottom:8px}
+.stack i:nth-child(1){width:256px;max-width:64%}
+.stack i:nth-child(2){width:168px;max-width:42%}
+.stack i:nth-child(3){width:104px;max-width:26%}
+
+/* ---------- Breadcrumb ------------------------------------------------ */
+.crumb{border-bottom:var(--rule);background:var(--bone)}
+.crumb ol{
+  display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:12px 0;
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--shale);
+  max-width:none;
+}
+.crumb li{margin:0}
+.crumb li+li::before{content:"\00A0/\00A0";color:var(--mist)}
+.crumb a{color:var(--shale)}
+.crumb [aria-current="page"]{color:var(--asphalt)}
+
+/* ---------- Main and sections ----------------------------------------- */
+main{display:block}
+.body{padding:48px 0 24px}
+section.block{padding:0 0 40px;border-top:var(--rule);margin-top:40px;padding-top:40px}
+section.block:first-of-type{border-top:0;margin-top:0;padding-top:0}
+
+h2{font-size:28px;line-height:1.2;font-weight:700;color:var(--gable);margin:0 0 14px;letter-spacing:-.01em;max-width:24ch}
+h3{font-size:19px;font-weight:600;color:var(--gable);margin:36px 0 10px;max-width:34ch}
+h4{font-size:16px;font-weight:600;color:var(--asphalt);margin:24px 0 8px;max-width:40ch}
+
+.lead{font-size:18px;color:var(--shale);max-width:62ch}
+.note{font-size:14px;color:var(--shale);max-width:var(--measure)}
+.source{
+  font-family:var(--mono);font-size:12px;letter-spacing:.04em;
+  color:var(--shale);max-width:var(--measure);margin:0 0 20px;
+}
+
+/* ---------- Cases and callouts ---------------------------------------- */
+.cases{display:grid;gap:20px;grid-template-columns:repeat(2,1fr);margin:24px 0 28px}
+@media (max-width:760px){.cases{grid-template-columns:1fr}}
+.case{background:var(--neutral);border:var(--rule);border-left:3px solid var(--gable);padding:18px 20px}
+.case p{margin:0;font-size:15px;max-width:none}
+.case p+p{margin-top:8px}
+.case .cite{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--shale)}
+.case .head{font-weight:600;color:var(--gable)}
+
+.callout{background:var(--gable);color:var(--bone);padding:24px;margin:24px 0}
+.callout p{color:var(--bone);margin:0;max-width:60ch}
+.callout p+p{margin-top:10px}
+.callout .eyebrow{color:var(--mist)}
+.callout a{color:var(--bone)}
+
+.panel{background:var(--neutral);border:var(--rule);padding:20px 22px;margin:0}
+.panel h3,.panel h4{margin-top:0}
+.panel :last-child{margin-bottom:0}
+
+/* ---------- Definition-style lists ------------------------------------ */
+.deflist{margin:20px 0 24px;max-width:var(--measure)}
+.deflist .item{padding:16px 0;border-top:var(--rule)}
+.deflist .item:last-child{border-bottom:var(--rule)}
+.deflist .item p{margin:0;max-width:none}
+.deflist .item .t{font-weight:600;color:var(--asphalt)}
+.deflist .item .s{
+  display:inline-block;margin-top:8px;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--shale);
+}
+
+/* ---------- Publication rows ------------------------------------------ */
+.pubs{margin:24px 0 8px;max-width:var(--measure)}
+.pub{padding:20px 0;border-top:var(--rule)}
+.pub:last-child{border-bottom:var(--rule)}
+.pub h3{margin:0 0 4px;font-size:18px}
+.pub .kind{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--shale);margin:0 0 8px}
+.pub p{margin:0 0 10px;max-width:none;font-size:15px}
+
+/* ---------- Tables ----------------------------------------------------- */
+.tablewrap{overflow-x:auto;margin:16px 0 24px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+caption{text-align:left;font-size:14px;color:var(--shale);padding-bottom:10px}
+th,td{text-align:left;padding:10px 12px;border-bottom:var(--rule);vertical-align:top}
+thead th{
+  background:var(--gable);color:var(--bone);border-bottom:none;
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;font-weight:400;
+}
+tbody th{font-weight:600}
+td.num,th.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:14px}
+td.empty{color:var(--shale);font-style:italic}
+
+/* ---------- Figure ------------------------------------------------------ */
+figure{margin:24px 0;background:var(--bone);border:var(--rule);padding:20px}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-size:14px;color:var(--shale);margin-top:12px;max-width:var(--measure)}
+
+/* ---------- Actions ----------------------------------------------------- */
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0 0;padding:0;list-style:none;max-width:none}
+.actions li{margin:0}
+.action{
+  display:inline-flex;align-items:center;gap:10px;min-height:44px;
+  padding:11px 18px;border:1px solid var(--gable);color:var(--gable);
+  text-decoration:none;font-size:15px;font-weight:600;background:transparent;
+}
+.action:hover,.action:focus-visible{background:var(--gable);color:var(--bone)}
+.action.primary{background:var(--gable);color:var(--bone)}
+.action.primary:hover,.action.primary:focus-visible{background:var(--ink);border-color:var(--ink)}
+.action .arw{font-family:var(--mono);font-size:14px}
+
+.inlinelinks{margin:20px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;max-width:none}
+.inlinelinks li{margin:0}
+.inlinelinks a{font-weight:600;font-size:15px}
+
+/* ---------- Section navigation ------------------------------------------ */
+.subnav{border-bottom:var(--rule);background:var(--neutral)}
+.subnav ul{display:flex;flex-wrap:wrap;gap:2px;list-style:none;margin:0;padding:0;max-width:none}
+.subnav a{
+  display:inline-flex;align-items:center;min-height:44px;padding:12px 14px;
+  font-size:14px;color:var(--shale);text-decoration:none;
+}
+.subnav a:hover,.subnav a:focus-visible{color:var(--gable);text-decoration:underline}
+.subnav a[aria-current="page"]{color:var(--gable);font-weight:600;box-shadow:inset 0 -2px 0 var(--gable)}
+
+/* ---------- Status markers ---------------------------------------------- */
+.pending{
+  display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.04em;
+  color:var(--asphalt);background:var(--paper);border:1px dashed var(--ochre);
+  padding:2px 8px;
+}
+/* The label is text and must clear 4.5:1. Ochre on Paper is 4.06:1, so the
+   label is Shale and Ochre is carried by the border, which is a non-text
+   element and needs only 3:1. Ochre is never set as type on Neutral either
+   (4.36:1). */
+.pending::before{content:"PENDING · ";color:var(--shale);font-weight:600}
+.confirm::before{content:"CONFIRM · ";color:var(--shale);font-weight:600}
+p.pending,div.pending{display:block;max-width:var(--measure);padding:10px 12px;margin:0 0 16px}
+
+/* ---------- Forms -------------------------------------------------------- */
+.formstub{border:1px dashed var(--mist);background:var(--neutral);padding:20px 22px;margin:24px 0;max-width:var(--measure)}
+.formstub h3{margin-top:0}
+.mt{margin-top:20px}
+p.mt{margin-top:28px}
+.formstub ul{margin-bottom:0}
+
+/* ---------- Footer -------------------------------------------------------- */
+.sitefoot{background:var(--ink);color:var(--bone);margin-top:64px;padding:56px 0 40px}
+.sitefoot a{color:var(--bone)}
+.sitefoot .cols{display:grid;gap:var(--gap);grid-template-columns:repeat(4,1fr)}
+@media (max-width:860px){.sitefoot .cols{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.sitefoot .cols{grid-template-columns:1fr}}
+.sitefoot h2{
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mist);margin:0 0 12px;font-weight:400;
+}
+.sitefoot ul{list-style:none;margin:0;padding:0;max-width:none}
+.sitefoot li{margin:0 0 8px;font-size:15px}
+.sitefoot .foot-wordmark{height:22px;width:auto;display:block;margin-bottom:20px}
+.sitefoot .colophon{
+  margin-top:40px;padding-top:24px;border-top:1px solid rgba(201,209,206,.28);
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--mist);
+}
+.sitefoot .colophon p{max-width:78ch;margin:0 0 6px;color:var(--mist)}
+
+/* ---------- Print --------------------------------------------------------- */
+@media print{
+  .masthead,.subnav,.crumb,.skip,.actions,.sitefoot .cols{display:none}
+  body{background:#fff;color:#000;font-size:11pt}
+  .hero{background:#fff;color:#000}
+  .hero h1,.hero p{color:#000}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#444}
+}
+
+/* Publication titles on the publications index are h2, so that the heading
+   order runs h1 > h2 without a skipped level. They are styled as .pub h3. */
+.pub h2.pubtitle{margin:0 0 4px;font-size:18px;line-height:1.3;font-weight:600;
+  color:var(--gable);letter-spacing:0;max-width:none}
+.sitefoot .foot-name{color:var(--mist);font-size:14px;max-width:26ch;margin-top:16px}
+
+/* ---------- Audience grid (home Participation) ---------------------------
+   Three columns on Bone, divided by Mist hairlines. Each column opens with a
+   mono line in Ochre naming who the route is for. Ochre on Bone is 4.69:1;
+   this component must not be placed on Neutral Ground, where Ochre falls to
+   4.36:1, nor on Gable Green, where it falls to 2.34:1. */
+.audiences{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--mist);border:var(--rule);margin:4px 0 0;
+}
+.audiences .col{background:var(--bone);padding:24px 22px;display:flex;flex-direction:column}
+.audiences .aud{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ochre);display:block;margin-bottom:12px;line-height:1.5;
+}
+.audiences h3{margin:0 0 8px;font-size:18px;color:var(--gable);max-width:none}
+.audiences p{margin:0 0 14px;font-size:14.5px;max-width:none}
+.audiences a{font-weight:600;font-size:15px;margin-top:auto;align-self:flex-start}
+@media (max-width:860px){.audiences{grid-template-columns:1fr}}
+
+/* ---------- Publications register (home) --------------------------------- */
+.pubtable td.num{font-size:14px}
+
+.audiences.two{grid-template-columns:repeat(2,1fr)}
+@media (max-width:860px){.audiences.two{grid-template-columns:1fr}}
+
+/* ---------- Accordion (Participate) --------------------------------------
+   Native <details>/<summary>. No JavaScript: the site ships none, and the
+   element is keyboard-operable and announced by assistive technology as-is. */
+.acc{border-top:var(--rule);margin:0}
+.acc:last-of-type{border-bottom:var(--rule)}
+.acc>summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;
+  padding:22px 0;min-height:44px;
+}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary::after{
+  content:"+";margin-left:auto;font-family:var(--mono);font-size:22px;line-height:1;
+  color:var(--gable);font-weight:400;
+}
+.acc[open]>summary::after{content:"\2212"}
+.acc>summary:hover .acc-t,.acc>summary:focus-visible .acc-t{text-decoration:underline}
+.acc>summary:focus-visible{outline:2px solid var(--gable);outline-offset:2px}
+.acc h2.acc-t{margin:0;font-size:22px;line-height:1.25;font-weight:700;color:var(--gable);letter-spacing:-.01em;max-width:none}
+.acc .acc-body{padding:0 0 32px}
+.acc .acc-body>*:first-child{margin-top:0}
+.acc .acc-body h3{margin-top:28px}
+@media print{.acc .acc-body{display:block!important}}
+
+/* An action button sitting on the inverted callout ground. */
+.callout .action.oninv{border-color:var(--bone);color:var(--bone);background:transparent}
+.callout .action.oninv:hover,.callout .action.oninv:focus-visible{background:var(--bone);color:var(--gable)}
+.callout h2{color:var(--bone);margin:0 0 12px;font-size:24px}
+.callout .actions{margin-top:20px}
+
+/* Page head without the closing rule. Used where a section title runs straight
+   into its opening paragraph. */
+.pagehead.norule{border-bottom:0;padding-bottom:8px}

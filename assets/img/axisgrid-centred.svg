@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3840 2160" aria-hidden="true" focusable="false">
+  <title>Axis Grid, centred node</title>
+  <rect width="3840" height="2160" fill="#004040"/>
+  <g stroke="#C9D1CE" stroke-opacity="0.18" stroke-width="1.5" fill="none">
+    <path d="M1920 1080 L0 0 M1920 1080 L3840 0 M1920 1080 L0 2160 M1920 1080 L3840 2160 M1920 1080 L0 1080 M1920 1080 L3840 1080 M1920 1080 L1920 0 M1920 1080 L1920 2160 M1920 1080 L0 475 M1920 1080 L3840 475 M1920 1080 L0 1685 M1920 1080 L3840 1685 M1920 1080 L1267 0 M1920 1080 L3648 0 M1920 1080 L1267 2160 M1920 1080 L3648 2160"/>
+  </g>
+</svg>

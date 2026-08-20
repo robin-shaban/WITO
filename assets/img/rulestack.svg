@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 40" aria-hidden="true" focusable="false">
+  <title>Stepped rule stack</title>
+  <g fill="#C9D1CE">
+    <rect x="0" y="0"  width="512" height="1.5"/>
+    <rect x="0" y="10" width="336" height="1.5"/>
+    <rect x="0" y="20" width="208" height="1.5"/>
+  </g>
+</svg>
