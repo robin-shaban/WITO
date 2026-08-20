@@ -77,9 +77,9 @@ a:hover,a:focus-visible{text-decoration-thickness:2px}
   gap:16px;min-height:64px;flex-wrap:wrap;
 }
 .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding:10px 0}
-.brand svg{height:20px;width:auto;display:block}
+.brand svg{height:20px;width:auto;aspect-ratio:5722/1490;flex:0 0 auto;display:block}
 .brand .full{
-  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--shale);
 }
 @media (max-width:900px){.brand .full{display:none}}
@@ -177,7 +177,7 @@ h4{font-size:16px;font-weight:600;color:var(--asphalt);margin:24px 0 8px;max-wid
 .case{background:var(--neutral);border:var(--rule);border-left:3px solid var(--gable);padding:18px 20px}
 .case p{margin:0;font-size:15px;max-width:none}
 .case p+p{margin-top:8px}
-.case .cite{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--shale)}
+.case .cite{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--shale)}
 .case .head{font-weight:600;color:var(--gable)}
 
 .callout{background:var(--gable);color:var(--bone);padding:24px;margin:24px 0}
@@ -197,7 +197,7 @@ h4{font-size:16px;font-weight:600;color:var(--asphalt);margin:24px 0 8px;max-wid
 .deflist .item p{margin:0;max-width:none}
 .deflist .item .t{font-weight:600;color:var(--asphalt)}
 .deflist .item .s{
-  display:inline-block;margin-top:8px;font-family:var(--mono);font-size:11.5px;
+  display:inline-block;margin-top:8px;font-family:var(--mono);font-size:12px;
   letter-spacing:.08em;text-transform:uppercase;color:var(--shale);
 }
 
@@ -206,7 +206,7 @@ h4{font-size:16px;font-weight:600;color:var(--asphalt);margin:24px 0 8px;max-wid
 .pub{padding:20px 0;border-top:var(--rule)}
 .pub:last-child{border-bottom:var(--rule)}
 .pub h3{margin:0 0 4px;font-size:18px}
-.pub .kind{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--shale);margin:0 0 8px}
+.pub .kind{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--shale);margin:0 0 8px}
 .pub p{margin:0 0 10px;max-width:none;font-size:15px}
 
 /* ---------- Tables ----------------------------------------------------- */
@@ -226,6 +226,7 @@ td.empty{color:var(--shale);font-style:italic}
 /* ---------- Figure ------------------------------------------------------ */
 figure{margin:24px 0;background:var(--bone);border:var(--rule);padding:20px}
 figure svg{display:block;width:100%;height:auto}
+.figscroll:focus-visible{outline:2px solid var(--gable);outline-offset:2px}
 figcaption{font-size:14px;color:var(--shale);margin-top:12px;max-width:var(--measure)}
 
 /* ---------- Actions ----------------------------------------------------- */
@@ -288,7 +289,7 @@ p.mt{margin-top:28px}
 }
 .sitefoot ul{list-style:none;margin:0;padding:0;max-width:none}
 .sitefoot li{margin:0 0 8px;font-size:15px}
-.sitefoot .foot-wordmark{height:22px;width:auto;display:block;margin-bottom:20px}
+.sitefoot .foot-wordmark{height:22px;width:auto;aspect-ratio:5722/1490;display:block;margin-bottom:20px}
 .sitefoot .colophon{
   margin-top:40px;padding-top:24px;border-top:1px solid rgba(201,209,206,.28);
   font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--mist);
@@ -321,12 +322,13 @@ p.mt{margin-top:28px}
 }
 .audiences .col{background:var(--bone);padding:24px 22px;display:flex;flex-direction:column}
 .audiences .aud{
-  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ochre);display:block;margin-bottom:12px;line-height:1.5;
 }
 .audiences h3{margin:0 0 8px;font-size:18px;color:var(--gable);max-width:none}
 .audiences p{margin:0 0 14px;font-size:14.5px;max-width:none}
-.audiences a{font-weight:600;font-size:15px;margin-top:auto;align-self:flex-start}
+.audiences a{font-weight:600;font-size:15px;margin-top:auto;align-self:flex-start;
+  display:inline-flex;align-items:center;min-height:24px}
 @media (max-width:860px){.audiences{grid-template-columns:1fr}}
 
 /* ---------- Publications register (home) --------------------------------- */
@@ -367,3 +369,48 @@ p.mt{margin-top:28px}
 /* Page head without the closing rule. Used where a section title runs straight
    into its opening paragraph. */
 .pagehead.norule{border-bottom:0;padding-bottom:8px}
+
+/* ---------- Small screens ------------------------------------------------
+   The masthead was taking 39 per cent of a 320 by 568 screen before any
+   content appeared. Brand and language sit on one row, navigation on the
+   next, and the vertical rhythm tightens. */
+@media (max-width:700px){
+  .page{padding:0 20px}
+
+  .masthead .page{
+    display:flex;flex-wrap:wrap;align-items:center;
+    gap:0 12px;min-height:0;padding-top:6px;padding-bottom:6px;
+  }
+  .masthead-right{display:contents}
+  .brand{order:1;padding:8px 0;flex:0 0 auto}
+  .lang{order:2;margin-left:auto;flex:0 0 auto}
+  .mainnav{order:3;flex:1 0 100%;min-width:0;margin:0 -6px}
+  .mainnav a{padding:7px 6px;min-height:32px;letter-spacing:.04em}
+  .lang span,.lang a{min-height:32px;min-width:32px;padding:6px}
+
+  .subnav a{padding:10px 10px;min-height:40px}
+  .crumb ol{padding:10px 0}
+
+  .hero .page{padding-top:44px;padding-bottom:44px}
+  .hero p{font-size:17px}
+
+  .pagehead{padding:36px 0 28px}
+  .body{padding:32px 0 16px}
+  section.block{margin-top:28px;padding-top:28px;padding-bottom:28px}
+
+  /* The diagram is 760px wide by design. Scaled to a phone screen its text lands
+     at about 4px, so it scrolls sideways at its authored size instead. The table
+     immediately below it carries the same seven layers, so nothing is lost to a
+     reader who does not scroll. */
+  figure{padding:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  figure svg{width:760px;max-width:none}
+  .callout{padding:20px}
+  .panel{padding:18px}
+  .acc>summary{padding:18px 0}
+  .acc .acc-t{font-size:20px}
+  .sitefoot{margin-top:44px;padding:40px 0 32px}
+  .action{padding:11px 14px}
+}
+
+/* A table that scrolls sideways must be reachable by keyboard. */
+.tablewrap:focus-visible{outline:2px solid var(--gable);outline-offset:2px}

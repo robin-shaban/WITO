@@ -10,15 +10,15 @@
 <meta property="og:site_name" content="World Interoperable Trust Organization">
 <meta property="og:title" content="Accessibility">
 <meta property="og:description" content="WITO material conforms to the Web Content Accessibility Guidelines, version 2.2, at level AA.">
-<meta property="og:url" content="https://wito.org/accessibility/">
-<meta property="og:image" content="https://wito.org/assets/img/wito-share-card.png">
+<meta property="og:url" content="https://wito.ngo/accessibility/">
+<meta property="og:image" content="https://wito.ngo/assets/img/wito-share-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="World Interoperable Trust Organization">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="fr_CH">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://wito.org/accessibility/">
+<link rel="canonical" href="https://wito.ngo/accessibility/">
 <meta name="theme-color" content="#004040">
 <link rel="alternate" hreflang="en" href="../accessibility/">
 <link rel="alternate" hreflang="fr" href="../fr/accessibilite/">
@@ -79,8 +79,9 @@
   <h2 id="h-checked">What was checked, and what was found</h2>
   <p>Every page of the site, with all collapsed sections opened so that their content was
   measured too.</p>
-  <div class="tablewrap">
+  <div class="tablewrap" tabindex="0" role="region" aria-label="Accessibility checks and their results">
     <table>
+      <caption class="visually-hidden">Accessibility checks and their results.</caption>
       <thead>
         <tr><th scope="col">Check</th><th scope="col">Criterion</th><th scope="col">Result</th></tr>
       </thead>
@@ -108,9 +109,10 @@
   carrier of meaning: every series, state, or category is also distinguished by a label, a
   position, or a pattern. The figure is vector with live text rather than an image of text, it
   carries a text alternative, and the same information is repeated in a data table beside it.
-  Minimum text size on the web is 12 pixels. The site runs no JavaScript, so nothing depends on
-  scripting being available. Collapsible sections use the browser's own disclosure element,
-  which is operable by keyboard without script.</p>
+  Minimum text size on the web is 12 pixels. Where a table or a figure is wider than a phone
+  screen it scrolls sideways inside a named region that the keyboard can reach and scroll. The
+  site runs no JavaScript, so nothing depends on scripting being available. Collapsible sections
+  use the browser's own disclosure element, which is operable by keyboard without script.</p>
 </section>
 
 <section class="block" aria-labelledby="h-lim">

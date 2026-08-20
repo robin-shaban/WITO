@@ -4,52 +4,52 @@
   <rect width="760" height="496" fill="#FAF8F3"/>
   <g>
     <rect x="118" y="28.0" width="602" height="46" fill="#004040"/>
-    <text x="104" y="55.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#4A5552" letter-spacing="0.06em">07</text>
+    <text x="104" y="55.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12" fill="#4A5552" letter-spacing="0.06em">07</text>
     <text x="136" y="49.0" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#FAF8F3">Mandating regulation</text>
-    <text x="136" y="66.0" font-family="Inter, Arial, sans-serif" font-size="11.5" fill="#FAF8F3">Law that compels verification</text>
+    <text x="136" y="66.0" font-family="Inter, Arial, sans-serif" font-size="12.5" fill="#FAF8F3">Law that compels verification</text>
   </g>
   <g>
     <rect x="118" y="76.0" width="602" height="46" fill="#3E726C"/>
-    <text x="104" y="103.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#4A5552" letter-spacing="0.06em">06</text>
+    <text x="104" y="103.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12" fill="#4A5552" letter-spacing="0.06em">06</text>
     <text x="136" y="97.0" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#FAF8F3">Governance and mutual recognition</text>
-    <text x="136" y="114.0" font-family="Inter, Arial, sans-serif" font-size="11.5" fill="#FAF8F3">Arrangements by which one system accepts another</text>
+    <text x="136" y="114.0" font-family="Inter, Arial, sans-serif" font-size="12.5" fill="#FAF8F3">Arrangements by which one system accepts another</text>
   </g>
   <g>
     <rect x="118" y="124.0" width="602" height="46" fill="#6E9691"/>
-    <text x="104" y="151.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#4A5552" letter-spacing="0.06em">05</text>
+    <text x="104" y="151.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12" fill="#4A5552" letter-spacing="0.06em">05</text>
     <text x="136" y="145.0" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#1F2322">Accreditation</text>
-    <text x="136" y="162.0" font-family="Inter, Arial, sans-serif" font-size="11.5" fill="#1F2322">Establishing that verifiers are competent</text>
+    <text x="136" y="162.0" font-family="Inter, Arial, sans-serif" font-size="12.5" fill="#1F2322">Establishing that verifiers are competent</text>
   </g>
   <g>
     <rect x="118" y="172.0" width="602" height="46" fill="#9BB6B2"/>
-    <text x="104" y="199.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#4A5552" letter-spacing="0.06em">04</text>
+    <text x="104" y="199.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12" fill="#4A5552" letter-spacing="0.06em">04</text>
     <text x="136" y="193.0" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#1F2322">Conformity assessment and certification</text>
-    <text x="136" y="210.0" font-family="Inter, Arial, sans-serif" font-size="11.5" fill="#1F2322">Testing, inspection, and certification</text>
+    <text x="136" y="210.0" font-family="Inter, Arial, sans-serif" font-size="12.5" fill="#1F2322">Testing, inspection, and certification</text>
   </g>
   <g>
     <rect x="118" y="220.0" width="602" height="46" fill="#C2D2CF"/>
-    <text x="104" y="247.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#4A5552" letter-spacing="0.06em">03</text>
+    <text x="104" y="247.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12" fill="#4A5552" letter-spacing="0.06em">03</text>
     <text x="136" y="241.0" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#1F2322">Traceability and exchange protocols</text>
-    <text x="136" y="258.0" font-family="Inter, Arial, sans-serif" font-size="11.5" fill="#1F2322">Moving records along a supply chain</text>
+    <text x="136" y="258.0" font-family="Inter, Arial, sans-serif" font-size="12.5" fill="#1F2322">Moving records along a supply chain</text>
   </g>
   <g>
     <rect x="118" y="268.0" width="602" height="46" fill="#E8EEED"/>
-    <text x="104" y="295.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#4A5552" letter-spacing="0.06em">02</text>
+    <text x="104" y="295.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12" fill="#4A5552" letter-spacing="0.06em">02</text>
     <text x="136" y="289.0" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#1F2322">Data and credential models</text>
-    <text x="136" y="306.0" font-family="Inter, Arial, sans-serif" font-size="11.5" fill="#1F2322">How a claim is expressed</text>
+    <text x="136" y="306.0" font-family="Inter, Arial, sans-serif" font-size="12.5" fill="#1F2322">How a claim is expressed</text>
   </g>
   <g>
     <rect x="118" y="316.0" width="602" height="46" fill="#F2F0EA"/>
-    <text x="104" y="343.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#4A5552" letter-spacing="0.06em">01</text>
+    <text x="104" y="343.0" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12" fill="#4A5552" letter-spacing="0.06em">01</text>
     <text x="136" y="337.0" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#1F2322">Identifiers</text>
-    <text x="136" y="354.0" font-family="Inter, Arial, sans-serif" font-size="11.5" fill="#1F2322">Naming the object</text>
+    <text x="136" y="354.0" font-family="Inter, Arial, sans-serif" font-size="12.5" fill="#1F2322">Naming the object</text>
   </g>
   <g stroke="#C9D1CE" stroke-width="1"><line x1="742" y1="82" x2="742" y2="400"/></g>
   <path d="M 742 78 l -4 8 l 8 0 z" fill="#4A5552"/>
-  <text x="750" y="196.0" font-family="Inter, Arial, sans-serif" font-size="10.5" fill="#4A5552" transform="rotate(90 750 196.0)" text-anchor="middle">builds on the layer below</text>
+  <text x="750" y="196.0" font-family="Inter, Arial, sans-serif" font-size="12" fill="#4A5552" transform="rotate(90 750 196.0)" text-anchor="middle">builds on the layer below</text>
   <line x1="14" y1="428" x2="720" y2="428" stroke="#C9D1CE" stroke-width="1"/>
-  <text x="14" y="404.0" font-family="Inter, Arial, sans-serif" font-size="11.5" fill="#1F2322">Shading indicates position in the ladder.</text>
+  <text x="14" y="404.0" font-family="Inter, Arial, sans-serif" font-size="12.5" fill="#1F2322">Shading indicates position in the ladder.</text>
   <a href="{R}publications/the-economic-trust-landscape/">
-    <text x="14" y="426" font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#4A5552" letter-spacing="1" text-decoration="underline">SOURCE · THE ECONOMIC TRUST LANDSCAPE, 2026</text>
+    <text x="14" y="426" font-family="JetBrains Mono, Consolas, monospace" font-size="12" fill="#4A5552" letter-spacing="1" text-decoration="underline">SOURCE · THE ECONOMIC TRUST LANDSCAPE, 2026</text>
   </a>
 </svg>
