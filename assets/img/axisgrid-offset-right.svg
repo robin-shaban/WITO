@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3840 2160" preserveAspectRatio="xMidYMid slice">
+  <title>Axis Grid, offset node, right</title>
+  <rect width="3840" height="2160" fill="#004040"/>
+  <g stroke="#C9D1CE" stroke-opacity="0.18" stroke-width="1.5" fill="none">
+    <path d="M3200 1460 L3840 0 M3200 1460 L0 0 M3200 1460 L3840 2160 M3200 1460 L0 2160 M3200 1460 L3840 1460 M3200 1460 L0 1460 M3200 1460 L3200 0 M3200 1460 L3200 2160 M3200 1460 L3840 475 M3200 1460 L0 475 M3200 1460 L3840 1685 M3200 1460 L0 1685 M3200 1460 L2573 0 M3200 1460 L192 0 M3200 1460 L2573 2160 M3200 1460 L192 2160"/>
+  </g>
+</svg>

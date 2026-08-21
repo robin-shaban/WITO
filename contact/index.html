@@ -20,9 +20,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://wito.ngo/contact/">
 <meta name="theme-color" content="#004040">
-<link rel="alternate" hreflang="en" href="../contact/">
-<link rel="alternate" hreflang="fr" href="../fr/contact/">
-<link rel="alternate" hreflang="x-default" href="../contact/">
+<link rel="alternate" hreflang="en" href="https://wito.ngo/contact/">
+<link rel="alternate" hreflang="fr" href="https://wito.ngo/fr/contact/">
+<link rel="alternate" hreflang="x-default" href="https://wito.ngo/contact/">
 <link rel="stylesheet" href="../assets/css/wito.css">
 <link rel="icon" href="../assets/img/monogram-w-gable.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin="anonymous">
@@ -55,8 +55,8 @@
     <div class="page">
       
       <h1>Contact</h1>
-      
       <span class="stack" aria-hidden="true"><i></i><i></i><i></i></span>
+      
     </div>
   </div>
   <div class="body">
@@ -65,19 +65,34 @@
 <section class="block">
   <p class="lead">WITO would like to hear from organisations that build and operate the
   world's trust systems, and from anyone considering Founding Membership.</p>
-  <ul class="actions">
-    <li><a class="action primary" href="mailto:robin@2rstrategy.ca?subject=WITO%20enquiry">Email WITO <span class="arw" aria-hidden="true">&#8594;</span></a></li>
-  </ul>
-  <p class="note mt">The address above reaches WITO's Chair directly.</p>
+
+  <form class="cform" action="mailto:robin@2rstrategy.ca" method="post" enctype="text/plain">
+    <div class="field">
+      <label for="cf-name">Name</label>
+      <input id="cf-name" name="Name" type="text" autocomplete="name" required>
+    </div>
+    <div class="field">
+      <label for="cf-email">Email address</label>
+      <input id="cf-email" name="Email" type="email" autocomplete="email" required>
+    </div>
+    <div class="field">
+      <label for="cf-org">Organisation</label>
+      <input id="cf-org" name="Organisation" type="text" autocomplete="organization">
+    </div>
+    <div class="field">
+      <label for="cf-msg">Message</label>
+      <textarea id="cf-msg" name="Message" rows="7" required></textarea>
+    </div>
+    <button type="submit">Send message <span class="arw" aria-hidden="true">&#8594;</span></button>
+  </form>
+
+  <p class="note mt">Sending opens a message in your own mail application, addressed to WITO.
+  Nothing is transmitted from this page and nothing is stored by this site. If your device has
+  no mail application set up, write to
+  <a href="mailto:robin@2rstrategy.ca?subject=WITO%20enquiry">robin@2rstrategy.ca</a> instead.
+  Either route reaches WITO's Chair directly.</p>
 </section>
 
-<section class="block">
-  <div class="panel">
-    <p><strong>World Interoperable Trust Organization</strong></p>
-    <p>Association within the meaning of articles 60 et seq. of the Swiss Civil Code.<br>
-    Seat: Canton of Geneva, Switzerland. Constituted 25 June 2026.</p>
-  </div>
-</section>
 
     </div>
   </div>
@@ -92,7 +107,7 @@
 </svg></a><p class="foot-name">World Interoperable Trust Organization</p></div><div><h2>Organisation</h2><ul><li><a href="../about/">About</a></li><li><a href="../about/economic-trust-infrastructure/">Economic trust infrastructure</a></li><li><a href="../work/">Our work</a></li><li><a href="../about/documents/">Documents</a></li></ul></div><div><h2>Research</h2><ul><li><a href="../publications/">Publications</a></li><li><a href="../publications/trust-infrastructure-for-the-economy-of-the-future/">Trust Infrastructure for the Economy of the Future</a></li><li><a href="../publications/the-economic-trust-landscape/">The Economic Trust Landscape</a></li></ul></div><div><h2>Take part</h2><ul><li><a href="../participate/">Participate</a></li><li><a href="../contact/">Contact</a></li></ul></div></div>
     <div class="colophon">
       <p>© 2026 World Interoperable Trust Organization. All rights reserved, except where a publication or dataset states an open licence.</p>
-      <p><a href="../accessibility/">Accessibility</a></p>
+      <p><a href="../privacy/">Privacy</a></p>
     </div>
   </div>
 </footer>

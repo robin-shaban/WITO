@@ -1,0 +1,39 @@
+THE TRUST INSTRUMENT DATASET
+Version 1.0, August 2026
+World Interoperable Trust Organization, Geneva
+
+
+LICENCE
+
+The dataset (wito-trust-instrument-dataset-2026.csv) and its codebook
+(wito-trust-instrument-codebook-2026.docx) are licensed under the Creative
+Commons Attribution 4.0 International Licence (CC BY 4.0).
+
+You are free to share and adapt the material for any purpose, including
+commercially, provided you give appropriate credit, provide a link to the
+licence, and indicate if changes were made.
+
+  Licence deed  https://creativecommons.org/licenses/by/4.0/
+  Legal code    https://creativecommons.org/licenses/by/4.0/legalcode.en
+
+The legal code governs. This file summarises it and does not replace it.
+
+
+ATTRIBUTION
+
+World Interoperable Trust Organization (2026). The trust instrument dataset,
+version 1.0. Geneva: WITO.
+
+
+MATERIAL NOT COVERED
+
+The dataset records the web addresses of documents published by other bodies,
+together with short notes describing what each of those documents establishes.
+Those documents remain the property of their publishers. This licence grants no
+right in any third party's text, trade mark, or database, and nothing in this
+file should be read as relicensing material WITO does not own.
+
+
+CONTACT
+
+robin@2rstrategy.ca

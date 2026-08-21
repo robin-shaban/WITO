@@ -27,6 +27,7 @@
   --ochre:#8A6B2E;
   --mist:#C9D1CE;
   --paper:#ECE8DD;
+  --ochre-field:#B8924A;
   --ink:#0B0E0D;
 
   --page:1080px;
@@ -47,12 +48,13 @@ body{
   font-family:var(--sans);font-size:16px;line-height:1.55;
   -webkit-font-smoothing:antialiased;
 }
+/* No <img> is served today; the reset stays so that one added later cannot
+   overflow its column. */
 img,svg{max-width:100%;height:auto}
 p{margin:0 0 14px;max-width:var(--measure)}
 ul,ol{margin:0 0 16px;padding-left:1.25em;max-width:var(--measure)}
 li{margin:0 0 6px}
 strong{font-weight:600}
-hr{border:0;border-top:var(--rule);margin:40px 0}
 a{color:var(--gable);text-underline-offset:2px}
 a:hover,a:focus-visible{text-decoration-thickness:2px}
 :focus-visible{outline:2px solid var(--gable);outline-offset:2px}
@@ -76,7 +78,10 @@ a:hover,a:focus-visible{text-decoration-thickness:2px}
   display:flex;align-items:center;justify-content:space-between;
   gap:16px;min-height:64px;flex-wrap:wrap;
 }
-.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding:10px 0}
+.brand{display:inline-flex;align-items:baseline;gap:12px;text-decoration:none;padding:10px 0}
+/* The wordmark's baseline sits on the bottom edge of its viewBox, and a replaced flex item
+   synthesises its baseline from its bottom margin edge, so align-items:baseline puts the
+   organisation name on the same baseline as the W I T O. */
 .brand svg{height:20px;width:auto;aspect-ratio:5722/1490;flex:0 0 auto;display:block}
 .brand .full{
   font-family:var(--mono);font-size:12px;letter-spacing:.1em;
@@ -94,7 +99,10 @@ a:hover,a:focus-visible{text-decoration-thickness:2px}
   color:var(--shale);text-decoration:none;
 }
 .mainnav a:hover,.mainnav a:focus-visible{color:var(--gable);text-decoration:underline}
-.mainnav a[aria-current="true"]{color:var(--gable);box-shadow:inset 0 -2px 0 var(--gable)}
+/* The current-page indicator is Ochre; the label stays Gable Green, so the
+   state is carried by two signals rather than by colour alone. Ochre on
+   Bone is 4.69:1, above the 3:1 a user-interface component needs. */
+.mainnav a[aria-current="true"]{color:var(--gable);box-shadow:inset 0 -2px 0 var(--ochre)}
 
 .lang{display:flex;align-items:center;gap:0;font-family:var(--mono);font-size:12px;letter-spacing:.08em}
 .lang span,.lang a{
@@ -110,21 +118,35 @@ a:hover,a:focus-visible{text-decoration-thickness:2px}
 .hero{position:relative;background:var(--gable);color:var(--bone);overflow:hidden}
 .hero .axis{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:1}
 .hero .page{position:relative;padding-top:72px;padding-bottom:64px}
-.hero .wordmark{display:block;height:44px;width:auto;margin-bottom:36px}
+/* Headline and standfirst are separated on three axes: size, value and measure.
+   60px rather than 64 keeps the hero 14px shorter for a difference on screen
+   that is small. 19ch rather than 18 is the number that matters: line count in
+   the headline is driven by the character cap, not the font size, and at 18ch
+   the French headline breaks to four lines while the English holds three. The
+   34px floor is the only part of this that a phone feels at all, because the
+   viewport term in clamp() never reaches the ceiling there. Mist on Gable Green
+   is 7.47:1, and 5.03:1 over an Axis Grid line, both above AA. */
 .hero h1{
   margin:0 0 20px;font-weight:700;line-height:1.1;letter-spacing:-.02em;
-  font-size:clamp(30px,5.2vw,50px);color:var(--bone);max-width:20ch;
+  font-size:clamp(34px,5.9vw,60px);color:var(--bone);max-width:19ch;
 }
-.hero p{color:var(--bone);font-size:18px;max-width:56ch;margin:0}
-.hero .meta{
-  margin-top:40px;padding-top:24px;border-top:1px solid rgba(201,209,206,.35);
-  font-family:var(--mono);font-size:12px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--mist);
-}
-.hero .meta span{display:block;margin-bottom:4px;max-width:none}
+.hero h1.withrule{margin-bottom:0}
+/* Ochre Field on Gable Green is 4.01:1, above the 3:1 a graphical object needs.
+   Plain Ochre is 2.34:1 there and must never be used on this ground. Where an
+   Axis Grid line passes behind, the effective ground lightens to #245A5A and
+   this falls to 2.70:1; the rule carries no information, so no threshold
+   formally applies, but it is fainter at those crossings. */
+.hero .herorule{display:block;width:120px;height:3px;background:var(--ochre-field);margin:20px 0}
+.hero p{color:var(--mist);font-size:17px;max-width:50ch;margin:0}
 
 /* ---------- Page header, light (interior) ----------------------------- */
 .pagehead{border-bottom:var(--rule);padding:56px 0 40px}
+/* A page whose body opens on a full-bleed band: the band's edge is the
+   boundary, so the head does not draw a second one behind it. */
+.pagehead.noline{border-bottom:0}
+/* The stack belongs to the title. Where a standfirst follows it, the
+   standfirst needs its own space. */
+.pagehead .stack + .lead{margin-top:18px}
 .pagehead h1{
   margin:0 0 14px;font-size:clamp(28px,4vw,40px);line-height:1.15;
   font-weight:700;color:var(--gable);letter-spacing:-.01em;max-width:22ch;
@@ -154,15 +176,35 @@ a:hover,a:focus-visible{text-decoration-thickness:2px}
 .crumb a{color:var(--shale)}
 .crumb [aria-current="page"]{color:var(--asphalt)}
 
+/* ---------- Rule scale ---------------------------------------------------
+   One system, four weights, colour by job rather than by component:
+     1px    Mist         structure: section separators, table and list rows
+     1.5px  Mist         the three-line stepped stack, under a page title only
+     2px    Ochre        a heading accent, or a "you are here" state indicator
+     2px    Gable        a component edge: a card top, a case left edge
+     3px    Ochre Field  the hero rule, one per site
+     8px    Ochre Field  a field edge, one per page
+   Nothing else. A new component takes a weight and a colour from this list.
+
+   ---------- Which Ochre ---------------------------------------------------
+   Dark Ochre #8A6B2E is the type colour. Light Ochre, Ochre Field #B8924A, is
+   for non-text, but only on a dark ground. Measured:
+
+                        Bone    Neutral  Paper   Gable   Ink
+     Light  #B8924A     2.73    2.54     2.37    4.01    6.69
+     Dark   #8A6B2E     4.69    4.36     4.06    2.34     -
+
+   A non-text indicator needs 3:1. Light Ochre clears it only on Gable Green and
+   on Ink, which is why the hero rule and the definition box edge are Light and
+   every Ochre mark on a light ground is Dark. Reversing either fails. */
+
 /* ---------- Main and sections ----------------------------------------- */
 main{display:block}
 .body{padding:48px 0 24px}
 section.block{padding:0 0 40px;border-top:var(--rule);margin-top:40px;padding-top:40px}
 section.block:first-of-type{border-top:0;margin-top:0;padding-top:0}
-
 h2{font-size:28px;line-height:1.2;font-weight:700;color:var(--gable);margin:0 0 14px;letter-spacing:-.01em;max-width:24ch}
 h3{font-size:19px;font-weight:600;color:var(--gable);margin:36px 0 10px;max-width:34ch}
-h4{font-size:16px;font-weight:600;color:var(--asphalt);margin:24px 0 8px;max-width:40ch}
 
 .lead{font-size:18px;color:var(--shale);max-width:62ch}
 .note{font-size:14px;color:var(--shale);max-width:var(--measure)}
@@ -170,24 +212,29 @@ h4{font-size:16px;font-weight:600;color:var(--asphalt);margin:24px 0 8px;max-wid
   font-family:var(--mono);font-size:12px;letter-spacing:.04em;
   color:var(--shale);max-width:var(--measure);margin:0 0 20px;
 }
+/* A publication title inside a citation line. JetBrains Mono has no italic in
+   the shipped set, so the title takes Inter italic, which is shipped, rather
+   than a synthesised oblique of the mono face. */
+.source em{font-family:var(--sans);font-style:italic;font-size:13px;letter-spacing:0}
+/* A source or citation line directly under a button needs air; the button's
+   own box gives none. */
+.actions + .source{margin-top:24px}
 
 /* ---------- Cases and callouts ---------------------------------------- */
 .cases{display:grid;gap:20px;grid-template-columns:repeat(2,1fr);margin:24px 0 28px}
 @media (max-width:760px){.cases{grid-template-columns:1fr}}
-.case{background:var(--neutral);border:var(--rule);border-left:3px solid var(--gable);padding:18px 20px}
+.case{background:var(--neutral);border:var(--rule);border-left:2px solid var(--gable);padding:18px 20px}
 .case p{margin:0;font-size:15px;max-width:none}
 .case p+p{margin-top:8px}
 .case .cite{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--shale)}
 .case .head{font-weight:600;color:var(--gable)}
 
 .callout{background:var(--gable);color:var(--bone);padding:24px;margin:24px 0}
-.callout p{color:var(--bone);margin:0;max-width:60ch}
-.callout p+p{margin-top:10px}
-.callout .eyebrow{color:var(--mist)}
+.callout p{color:var(--mist);margin:0;max-width:60ch}
 .callout a{color:var(--bone)}
 
 .panel{background:var(--neutral);border:var(--rule);padding:20px 22px;margin:0}
-.panel h3,.panel h4{margin-top:0}
+.panel h3{margin-top:0}
 .panel :last-child{margin-bottom:0}
 
 /* ---------- Definition-style lists ------------------------------------ */
@@ -196,16 +243,11 @@ h4{font-size:16px;font-weight:600;color:var(--asphalt);margin:24px 0 8px;max-wid
 .deflist .item:last-child{border-bottom:var(--rule)}
 .deflist .item p{margin:0;max-width:none}
 .deflist .item .t{font-weight:600;color:var(--asphalt)}
-.deflist .item .s{
-  display:inline-block;margin-top:8px;font-family:var(--mono);font-size:12px;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--shale);
-}
 
 /* ---------- Publication rows ------------------------------------------ */
 .pubs{margin:24px 0 8px;max-width:var(--measure)}
 .pub{padding:20px 0;border-top:var(--rule)}
 .pub:last-child{border-bottom:var(--rule)}
-.pub h3{margin:0 0 4px;font-size:18px}
 .pub .kind{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--shale);margin:0 0 8px}
 .pub p{margin:0 0 10px;max-width:none;font-size:15px}
 
@@ -221,13 +263,11 @@ thead th{
 }
 tbody th{font-weight:600}
 td.num,th.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:14px}
-td.empty{color:var(--shale);font-style:italic}
 
 /* ---------- Figure ------------------------------------------------------ */
 figure{margin:24px 0;background:var(--bone);border:var(--rule);padding:20px}
 figure svg{display:block;width:100%;height:auto}
 .figscroll:focus-visible{outline:2px solid var(--gable);outline-offset:2px}
-figcaption{font-size:14px;color:var(--shale);margin-top:12px;max-width:var(--measure)}
 
 /* ---------- Actions ----------------------------------------------------- */
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0 0;padding:0;list-style:none;max-width:none}
@@ -240,11 +280,11 @@ figcaption{font-size:14px;color:var(--shale);margin-top:12px;max-width:var(--mea
 .action:hover,.action:focus-visible{background:var(--gable);color:var(--bone)}
 .action.primary{background:var(--gable);color:var(--bone)}
 .action.primary:hover,.action.primary:focus-visible{background:var(--ink);border-color:var(--ink)}
-.action .arw{font-family:var(--mono);font-size:14px}
+/* Only JetBrains Mono 400 is shipped. Without this the arrow inherits the
+   button's 600 and the browser synthesises a faux bold. */
+.action .arw{font-family:var(--mono);font-size:14px;font-weight:400}
+.arw{font-weight:400}
 
-.inlinelinks{margin:20px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;max-width:none}
-.inlinelinks li{margin:0}
-.inlinelinks a{font-weight:600;font-size:15px}
 
 /* ---------- Section navigation ------------------------------------------ */
 .subnav{border-bottom:var(--rule);background:var(--neutral)}
@@ -254,28 +294,31 @@ figcaption{font-size:14px;color:var(--shale);margin-top:12px;max-width:var(--mea
   font-size:14px;color:var(--shale);text-decoration:none;
 }
 .subnav a:hover,.subnav a:focus-visible{color:var(--gable);text-decoration:underline}
-.subnav a[aria-current="page"]{color:var(--gable);font-weight:600;box-shadow:inset 0 -2px 0 var(--gable)}
+.subnav a[aria-current="page"]{color:var(--gable);font-weight:600;box-shadow:inset 0 -2px 0 var(--ochre)}
 
-/* ---------- Status markers ---------------------------------------------- */
+/* ---------- Editorial markers -------------------------------------------
+   Restored 20 August 2026 with the legal notice, privacy and dataset pages.
+   The label is text and must clear 4.5:1. Ochre on Paper is 4.06:1, so the
+   label is Shale and Ochre is carried by the dashed border, which is a
+   non-text element needing only 3:1. Ochre is never set as type on Neutral
+   Ground either, where it is 4.36:1.
+
+   As of 21 August 2026 no page uses this class: every editorial placeholder has
+   been resolved, which is what should be true at launch. Do NOT remove the rule
+   on that basis. It was swept once before as dead code, and six pages needed it
+   again a day later when three deleted pages were restored. A dead-code sweep is
+   only ever valid against the page set at the moment it runs. */
 .pending{
   display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.04em;
   color:var(--asphalt);background:var(--paper);border:1px dashed var(--ochre);
   padding:2px 8px;
 }
-/* The label is text and must clear 4.5:1. Ochre on Paper is 4.06:1, so the
-   label is Shale and Ochre is carried by the border, which is a non-text
-   element and needs only 3:1. Ochre is never set as type on Neutral either
-   (4.36:1). */
-.pending::before{content:"PENDING · ";color:var(--shale);font-weight:600}
-.confirm::before{content:"CONFIRM · ";color:var(--shale);font-weight:600}
-p.pending,div.pending{display:block;max-width:var(--measure);padding:10px 12px;margin:0 0 16px}
+.pending::before{content:"PENDING \00B7 ";color:var(--shale);font-weight:600}
+.confirm::before{content:"CONFIRM \00B7 ";color:var(--shale);font-weight:600}
+p.pending{display:block;max-width:var(--measure);padding:10px 12px;margin:0 0 16px}
 
-/* ---------- Forms -------------------------------------------------------- */
-.formstub{border:1px dashed var(--mist);background:var(--neutral);padding:20px 22px;margin:24px 0;max-width:var(--measure)}
-.formstub h3{margin-top:0}
 .mt{margin-top:20px}
 p.mt{margin-top:28px}
-.formstub ul{margin-bottom:0}
 
 /* ---------- Footer -------------------------------------------------------- */
 .sitefoot{background:var(--ink);color:var(--bone);margin-top:64px;padding:56px 0 40px}
@@ -306,69 +349,65 @@ p.mt{margin-top:28px}
 }
 
 /* Publication titles on the publications index are h2, so that the heading
-   order runs h1 > h2 without a skipped level. They are styled as .pub h3. */
+   order runs h1 > h2 without a skipped level. */
 .pub h2.pubtitle{margin:0 0 4px;font-size:18px;line-height:1.3;font-weight:600;
   color:var(--gable);letter-spacing:0;max-width:none}
 .sitefoot .foot-name{color:var(--mist);font-size:14px;max-width:26ch;margin-top:16px}
 
-/* ---------- Audience grid (home Participation) ---------------------------
-   Three columns on Bone, divided by Mist hairlines. Each column opens with a
-   mono line in Ochre naming who the route is for. Ochre on Bone is 4.69:1;
-   this component must not be placed on Neutral Ground, where Ochre falls to
-   4.36:1, nor on Gable Green, where it falls to 2.34:1. */
-.audiences{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-  background:var(--mist);border:var(--rule);margin:4px 0 0;
-}
-.audiences .col{background:var(--bone);padding:24px 22px;display:flex;flex-direction:column}
-.audiences .aud{
-  font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ochre);display:block;margin-bottom:12px;line-height:1.5;
-}
-.audiences h3{margin:0 0 8px;font-size:18px;color:var(--gable);max-width:none}
-.audiences p{margin:0 0 14px;font-size:14.5px;max-width:none}
-.audiences a{font-weight:600;font-size:15px;margin-top:auto;align-self:flex-start;
-  display:inline-flex;align-items:center;min-height:24px}
-@media (max-width:860px){.audiences{grid-template-columns:1fr}}
 
 /* ---------- Publications register (home) --------------------------------- */
-.pubtable td.num{font-size:14px}
 
-.audiences.two{grid-template-columns:repeat(2,1fr)}
-@media (max-width:860px){.audiences.two{grid-template-columns:1fr}}
 
-/* ---------- Accordion (Participate) --------------------------------------
-   Native <details>/<summary>. No JavaScript: the site ships none, and the
-   element is keyboard-operable and announced by assistive technology as-is. */
-.acc{border-top:var(--rule);margin:0}
-.acc:last-of-type{border-bottom:var(--rule)}
-.acc>summary{
-  list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;
-  padding:22px 0;min-height:44px;
+/* ---------- Disclosure (collapsible table and cases) ---------------------
+   Native <details>/<summary>. No JavaScript: the element is keyboard-operable
+   and announced by assistive technology without it. Content inside a closed
+   disclosure is not reached by the browser's in-page search in every browser,
+   which is disclosed on the accessibility page. */
+.fold{border-top:var(--rule);margin:20px 0 0;max-width:var(--measure)}
+.fold:last-of-type{border-bottom:var(--rule)}
+.fold>summary{
+  list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:14px;
+  padding:16px 0;min-height:44px;
 }
-.acc>summary::-webkit-details-marker{display:none}
-.acc>summary::after{
-  content:"+";margin-left:auto;font-family:var(--mono);font-size:22px;line-height:1;
-  color:var(--gable);font-weight:400;
+.fold>summary::-webkit-details-marker{display:none}
+.fold>summary::after{
+  content:"+";margin-left:auto;font-family:var(--mono);font-size:20px;line-height:1;
+  color:var(--gable);font-weight:400;align-self:center;
 }
-.acc[open]>summary::after{content:"\2212"}
-.acc>summary:hover .acc-t,.acc>summary:focus-visible .acc-t{text-decoration:underline}
-.acc>summary:focus-visible{outline:2px solid var(--gable);outline-offset:2px}
-.acc h2.acc-t{margin:0;font-size:22px;line-height:1.25;font-weight:700;color:var(--gable);letter-spacing:-.01em;max-width:none}
-.acc .acc-body{padding:0 0 32px}
-.acc .acc-body>*:first-child{margin-top:0}
-.acc .acc-body h3{margin-top:28px}
-@media print{.acc .acc-body{display:block!important}}
+.fold[open]>summary::after{content:"\2212"}
+.fold>summary:focus-visible{outline:2px solid var(--gable);outline-offset:2px}
+.fold .fold-t{font-weight:600;color:var(--gable);font-size:17px}
+.fold>summary:hover .fold-t,.fold>summary:focus-visible .fold-t{text-decoration:underline}
+.fold .fold-n{font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--shale)}
+/* Where the label slot carries a numeral rather than a word, it is set in
+   tabular figures at a size that keeps the column aligned. */
+.devfolds{max-width:var(--measure);margin:4px 0 0}
+.devfolds .fold{margin-top:0}
+.devfolds .fold .fold-n{font-size:14px;letter-spacing:.06em;font-variant-numeric:tabular-nums;
+  min-width:22px}
+.fold .fold-body{padding:0 0 22px}
+.fold .fold-body>*:first-child{margin-top:0}
+.fold .tablewrap{margin-top:0}
+.fold.case{max-width:var(--measure)}
+/* The last case in a run is followed by ordinary prose with no rule between,
+   so the disclosure has to supply the separation itself. */
+.fold + p{margin-top:36px}
+.fold.case .fold-body p{margin:0 0 12px;max-width:none}
+.fold.case .fold-body p:last-child{margin-bottom:0}
+@media print{.fold .fold-body{display:block!important}}
 
 /* An action button sitting on the inverted callout ground. */
 .callout .action.oninv{border-color:var(--bone);color:var(--bone);background:transparent}
 .callout .action.oninv:hover,.callout .action.oninv:focus-visible{background:var(--bone);color:var(--gable)}
-.callout h2{color:var(--bone);margin:0 0 12px;font-size:24px}
+.callout h2{color:var(--bone);margin:0 0 12px;font-size:32px;letter-spacing:-.01em}
 .callout .actions{margin-top:20px}
 
-/* Page head without the closing rule. Used where a section title runs straight
-   into its opening paragraph. */
-.pagehead.norule{border-bottom:0;padding-bottom:8px}
+/* The Contact callout is a filled block and supplies its own edge; the section
+   rule above it doubles that edge for no gain. A class rather than :has(), so
+   nothing depends on a selector an older browser might miss. */
+section.block.noruletop{border-top:0;margin-top:24px;padding-top:0}
+
 
 /* ---------- Small screens ------------------------------------------------
    The masthead was taking 39 per cent of a 320 by 568 screen before any
@@ -382,17 +421,31 @@ p.mt{margin-top:28px}
     gap:0 12px;min-height:0;padding-top:6px;padding-bottom:6px;
   }
   .masthead-right{display:contents}
-  .brand{order:1;padding:8px 0;flex:0 0 auto}
+  .brand{order:1;padding:10px 0;min-height:44px;flex:0 0 auto}
   .lang{order:2;margin-left:auto;flex:0 0 auto}
-  .mainnav{order:3;flex:1 0 100%;min-width:0;margin:0 -6px}
-  .mainnav a{padding:7px 6px;min-height:32px;letter-spacing:.04em}
-  .lang span,.lang a{min-height:32px;min-width:32px;padding:6px}
+  .mainnav{order:3;flex:1 0 100%;min-width:0;margin:0 -8px}
+  /* Touch targets. On a pointer-coarse screen every control in the masthead
+     is at least 44 by 44, which is the figure Apple and Google both publish,
+     rather than the 24 by 24 floor of WCAG SC 2.5.8. The masthead is not
+     sticky, so the extra height is paid once at the top of the page and is
+     scrolled away, which is what makes the larger targets affordable. */
+  .mainnav a{padding:11px 8px;min-height:44px;letter-spacing:.04em}
+  .lang span,.lang a{min-height:44px;min-width:44px;padding:11px 8px}
 
-  .subnav a{padding:10px 10px;min-height:40px}
-  .crumb ol{padding:10px 0}
+  .subnav a{padding:11px 10px;min-height:44px}
+  .subnav ul{gap:0}
+  /* On a phone the masthead, the section navigation and the breadcrumb stack
+     into three bars, and on a 320 by 568 screen they took just over half of
+     the first view before a word of the page appeared. Where a section
+     navigation is present it already carries the "you are here" state on the
+     same item the breadcrumb names, so at phone widths the breadcrumb is the
+     redundant layer and steps out. It stays on any page that has no section
+     navigation, and it returns above 700 pixels. */
+  nav.subnav + nav.crumb{display:none}
+  .crumb ol{padding:9px 0}
 
   .hero .page{padding-top:44px;padding-bottom:44px}
-  .hero p{font-size:17px}
+  .hero p{font-size:16px}
 
   .pagehead{padding:36px 0 28px}
   .body{padding:32px 0 16px}
@@ -406,11 +459,205 @@ p.mt{margin-top:28px}
   figure svg{width:760px;max-width:none}
   .callout{padding:20px}
   .panel{padding:18px}
-  .acc>summary{padding:18px 0}
-  .acc .acc-t{font-size:20px}
   .sitefoot{margin-top:44px;padding:40px 0 32px}
   .action{padding:11px 14px}
 }
 
 /* A table that scrolls sideways must be reachable by keyboard. */
 .tablewrap:focus-visible{outline:2px solid var(--gable);outline-offset:2px}
+
+/* ---------- Numbered list (home "The challenge", Our work activities) -----
+   Design direction 05: the guide rules out an icon set and carries repeated
+   signals with "Roman numerals, mono labels and rules" (chapter 05). The
+   numeral is Shale, 7.29:1 on Bone; a numeral in Mist on Bone is 1.47:1 and
+   fails, so Mist numerals belong only on a dark ground. The list keeps its
+   <ol> semantics, so the count is still announced; the visible numeral is
+   decorative and hidden from assistive technology to avoid a double reading. */
+.numlist{list-style:none;margin:4px 0 0;padding:0;border-top:var(--rule);max-width:none}
+.numlist>li{
+  display:grid;grid-template-columns:64px 1fr;gap:20px;
+  margin:0;padding:24px 0;border-bottom:var(--rule);align-items:start;
+}
+/* The section rule below closes the list; a border here would double it. */
+.numlist>li:last-child{border-bottom:0}
+/* The numeral is a marker, not a display figure. At 28px it sits a step above
+   the 19px heading beside it, enough to index the list without competing with
+   it. line-height 1.15 rather than .85 puts its cap height on the heading's. */
+.numlist .fig{
+  font-family:var(--mono);font-size:28px;line-height:1.15;color:var(--shale);
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+}
+.numlist h3{margin:0 0 6px;font-size:19px;color:var(--gable);max-width:none}
+.numlist p{margin:0;font-size:15.5px;max-width:64ch}
+@media (max-width:700px){
+  .numlist>li{grid-template-columns:44px 1fr;gap:14px;padding:20px 0}
+  .numlist .fig{font-size:22px}
+  .numlist h3{font-size:18px}
+}
+
+/* ---------- Definition box (home) ----------------------------------------
+   Design direction 03. Ochre Field is decorative, carries no type and so meets
+   no contrast threshold; it is the only warm colour on the site. One Ochre
+   Field element per page, and on the home page this box is it. */
+.defbox{background:var(--neutral);border:var(--rule);border-top:0;
+  max-width:var(--measure);margin:28px 0 0}
+.defbox .edge{display:block;height:8px;background:var(--ochre-field)}
+.defbox .in{padding:24px 26px}
+.defbox p{margin:0;max-width:none}
+.defbox .actions{margin-top:18px}
+@media (max-width:700px){.defbox .edge{height:6px}.defbox .in{padding:20px}}
+
+/* ---------- Participation routes (home) ----------------------------------
+   Design direction 01. Two Neutral Ground panels, hairline border, mono label,
+   short Gable rule, bordered button. The label is Gable Green and NOT Ochre:
+   Ochre on Neutral Ground is 4.36:1, below the threshold. margin-top:auto on
+   .actions keeps the two buttons on one baseline if the descriptions ever
+   differ in height. */
+.routes{display:grid;gap:20px;grid-template-columns:repeat(2,1fr);margin:4px 0 0}
+.routes .panel{display:flex;flex-direction:column}
+.routes .lab{font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gable);margin:0 0 10px}
+.routes .r{display:block;height:2px;width:44px;background:var(--ochre);margin:0 0 12px}
+.routes h3{margin:0 0 6px;font-size:19px;color:var(--gable);max-width:none}
+.routes p{margin:0;font-size:15px;max-width:none}
+.routes .actions{margin-top:auto;padding-top:18px}
+@media (max-width:860px){.routes{grid-template-columns:1fr}}
+
+/* ---------- Publications, latest plus list (home) ------------------------
+   Ochre on Bone is 4.69:1 and may be set as text. It must not move to a
+   Neutral or Paper ground, where it is 4.36:1 and 4.06:1 and fails for text. */
+.publist{list-style:none;margin:4px 0 0;padding:0;max-width:none}
+.publist>li{margin:0}
+.publist .feat{border-top:2px solid var(--gable);padding:22px 0 24px;border-bottom:var(--rule)}
+.publist .kick{font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ochre);margin:0 0 10px}
+.publist .kick .meta{color:var(--shale);margin-left:10px}
+.publist .kick .meta::before{content:"\00B7 ";color:var(--mist)}
+.publist .feat h3{margin:0 0 8px;font-size:24px;color:var(--gable);max-width:26ch;line-height:1.25}
+.publist .feat p{margin:0;font-size:16px;max-width:62ch}
+.publist>li:not(.feat){display:grid;grid-template-columns:1fr auto;gap:18px;
+  align-items:baseline;padding:14px 0;border-bottom:var(--rule)}
+.publist>li:not(.feat) a{font-size:16px;font-weight:600;min-height:24px;
+  display:inline-flex;align-items:center}
+.publist .m{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--shale);white-space:nowrap}
+@media (max-width:700px){
+  .publist>li:not(.feat){grid-template-columns:1fr;gap:2px}
+  .publist .feat h3{font-size:21px}
+}
+
+/* ---------- On-this-page navigation (Participate) ------------------------
+   position:sticky, no JavaScript. Ochre on Bone is 4.69:1, above the 3:1 a
+   user-interface component needs and above the 4.5:1 the mono label needs. */
+.snav{position:sticky;top:0;z-index:5;background:var(--bone);
+  border-bottom:var(--rule);margin:0}
+.snav ul{display:flex;flex-wrap:wrap;gap:12px;list-style:none;margin:0;padding:16px 0;max-width:none}
+.snav li{margin:0}
+.snav a{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;
+  padding:12px 18px;border:1px solid var(--gable);color:var(--gable);
+  text-decoration:none;font-size:15px;font-weight:600;background:transparent;
+  box-shadow:inset 0 -2px 0 var(--ochre);
+}
+.snav a:hover,.snav a:focus-visible{background:var(--gable);color:var(--bone)}
+/* The navigation already closes with a rule of its own, so the section that
+   follows it does not draw a second one 28 pixels below the first. The
+   spacing is unchanged; only the duplicated line goes. */
+.snav + section.block{border-top:0}
+@media (max-width:700px){.snav a{padding:11px 14px;font-size:14px}
+  .snav ul{gap:8px;padding:12px 0}}
+/* Below 380 the two buttons wrap and the sticky bar takes a quarter of the
+   screen. It stops sticking there and becomes an ordinary signpost. */
+@media (max-width:379px){
+  .snav{position:static}
+  .snav a{padding:10px 12px;font-size:13.5px}
+}
+/* A phone held sideways is about 360 pixels tall. A bar that holds its place
+   at the top would take a quarter of what the reader can see, so on any short
+   viewport it stops sticking, whatever the width. */
+@media (max-height:500px){.snav{position:static}}
+
+/* ---------- Windows High Contrast / forced-colors -------------------------
+   In forced-colors mode the operating system replaces every colour and drops
+   box-shadow entirely. The current-page indicator on this site is carried by a
+   2px inset box-shadow plus a colour change, and both of those signals are the
+   two things forced colours removes, which would leave a reader with no way to
+   tell which page they are on. Borders survive, so the indicator is redrawn as
+   a border. The same applies to the language switcher and the on-this-page
+   navigation. The dark bands lose their ground, which is correct: the reader
+   has asked for their own colours.
+   -------------------------------------------------------------------------- */
+@media (forced-colors: active){
+  .mainnav a[aria-current="true"],
+  .subnav a[aria-current="page"],
+  .lang .current{
+    box-shadow:none;
+    border-bottom:2px solid currentColor;
+  }
+  .snav a{border:1px solid currentColor;box-shadow:none}
+  .snav a[aria-current="page"]{border-bottom-width:3px}
+  /* The hero rule, the field edge and the three-line stack are decoration that
+     carries no information, but they should still be drawn rather than vanish. */
+  .hero .herorule,.defbox .edge,.stack i,.routes li::before{
+    forced-color-adjust:none;background:CanvasText;
+  }
+  /* A disclosure and a form control need a visible edge of their own. */
+  details,.cform input,.cform textarea,.cform button{border:1px solid currentColor}
+}
+
+/* ---------- Contact form -------------------------------------------------
+   The site runs no JavaScript and GitHub Pages has no server side, so the
+   form posts to a mailto: address and opens the visitor's own mail client.
+   Every field has a real <label>, not a placeholder, so the label survives
+   once the field is filled and is announced by assistive technology. */
+.cform{max-width:var(--measure);margin:8px 0 0}
+.cform .field{margin:0 0 20px}
+.cform label{
+  display:block;font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gable);margin:0 0 8px;
+}
+.cform input,.cform textarea{
+  display:block;width:100%;font-family:var(--sans);font-size:16px;color:var(--asphalt);
+  background:var(--bone);border:1px solid var(--shale);border-radius:0;
+  padding:12px 14px;min-height:48px;
+}
+.cform textarea{min-height:150px;line-height:1.5;resize:vertical}
+.cform input:focus-visible,.cform textarea:focus-visible{
+  outline:2px solid var(--gable);outline-offset:2px;border-color:var(--gable);
+}
+.cform button{
+  display:inline-flex;align-items:center;gap:10px;min-height:48px;
+  padding:13px 20px;border:1px solid var(--gable);background:var(--gable);
+  color:var(--bone);font-family:var(--sans);font-size:15px;font-weight:600;
+  cursor:pointer;border-radius:0;
+}
+.cform button:hover,.cform button:focus-visible{background:var(--ink);border-color:var(--ink)}
+.cform button:focus-visible{outline:2px solid var(--gable);outline-offset:2px}
+.cform .arw{font-family:var(--mono);font-size:14px}
+
+/* ---------- Statement band ----------------------------------------------
+   A full-bleed Gable Green field carrying the Axis Grid, the same treatment as
+   the home hero with the node mirrored to the right. Bone on the effective
+   ground #245A5A is 7.37:1 and Mist is 5.03:1, both above AA. The motif is
+   decorative and marked so. */
+/* The band sits inside .body > .page, which is capped at 1080 and padded, so it
+   has to break out to reach the edges the way the home hero does. 100vw rather
+   than 100% because the container is the capped one. */
+.gband{position:relative;background:var(--gable);color:var(--bone);overflow:hidden;
+  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  margin-top:0;margin-bottom:0}
+/* The band fills its section: no Bone strip above or below it. The body's own
+   top padding is cancelled where a band is the first thing in it, and the
+   section that follows drops its top rule, because the edge of the field is
+   already one. */
+.body:has(> .page > .gband:first-child){padding-top:0}
+.gband + section.block{border-top:0;margin-top:0;padding-top:40px}
+.gband .page{max-width:var(--page);margin:0 auto;padding-left:32px;padding-right:32px}
+@media (max-width:700px){.gband .page{padding-left:20px;padding-right:20px}}
+.gband .axis{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  pointer-events:none}
+.gband .page{position:relative;padding-top:48px;padding-bottom:44px}
+.gband p{color:var(--bone);font-size:18px;max-width:62ch;margin:0}
+@media (max-width:700px){.gband .page{padding-top:36px;padding-bottom:32px}
+  .gband p{font-size:17px}}
+@media print{.gband{background:#fff;color:#000}.gband p{color:#000}.gband .axis{display:none}}
